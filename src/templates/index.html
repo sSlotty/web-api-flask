@@ -8,7 +8,10 @@
         <p class="card-text">Body</p>
         <p>Test push form dev</p>
         <p>Test push form dev-NOT</p>
-        {{ response[0] }}
+        {{status}}
+        {% if status %}
+          {{ response[0] }}
+          {% endif %}
       </div>
     </div>
     

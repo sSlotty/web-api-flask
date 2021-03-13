@@ -6,17 +6,20 @@ main = Blueprint('main',__name__,static_folder='static',template_folder='templat
 @main.route('/')
 @main.route('/index')
 def index():
-    res,status = crypto.getCryptoLimit(5)
-    print(status)
-    return render_template('index.html',response=res,status = status)
+    res = crypto.getCryptoLimit(5)
+    print(type(res['status']))
+    return render_template('index.html',response=res['result'],status=res['status'])
 
 @main.route('/more-market')
 def viewAll():
-    res,status = crypto.getCrpytoAll()
-    return render_template('more_market.html',response = res,status = status)
+    res = crypto.getCryptoLimit(10)
+    return render_template('more_market.html',response=res['result'],status=res['status'])
+    
 
 @main.route('/about-market/<string:id>')
 def about_market(id):
+    req = crypto.getAboutCrypto(id)
+    pass
     return render_template('about-market.html')
 
 @main.route('/about')

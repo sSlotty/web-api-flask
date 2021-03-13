@@ -1,22 +1,36 @@
+from flask import request
 import requests
 import config
+import json
+
 
 def getCrpytoAll():
-    url = '{}/ticker?key={}&=interval=1d,30d&convert=THB&page=1'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'])
-    # print(url)
-    response = requests.get(url)
+    url = '{}/ticker?key={}&=interval=1d,30d&convert=THB&per-page=10'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'])
     
-    if response.status == requests.codes.OK:
-        return response.json(),True
+    req = requests.get(url, stream=True,headers={'User-Agent':'X-Pagination-Total-Items'})
+    
+    if req.status_code == 200:
+        return {"result":req.json(),"status":True}
     else:
-        return response.json(),False
+        print("String could not be converted to JSON")
+        return {"result":"Please try agin","status":False}
 
 def getCryptoLimit(perPage):
-    url = '{}ticker?key={}&interval=1d,30d&convert=THB&page=1&per-page={}'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],perPage)
-    print(url)
-    response = requests.get(url)
+    url = '{}/ticker?key={}&interval=1d,30d&convert=THB&per-page={}'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],perPage)
+    response = requests.get(url,headers={'User-Agent':'X-Pagination-Total-Items'})
     
     if response.status_code == 200:
-        return response.json(), True
+        return {"result":response.json(),"status":True}
     else: 
-        return response.json(), False
+        return {"result":"Please try agin","status":False}
+    
+def getAboutCrypto(id):
+    url = '{}?key={}&ids={}'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],id)
+    req = requests.get(url)
+    
+    if req.status_code == 200:
+        return {"result":req.json(),"status":True}
+    else:
+        return {"result":"Please try agin","status":False}
+
+
