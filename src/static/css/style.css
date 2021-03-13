@@ -3,3 +3,6 @@
 body{
     font-family: 'Mitr', sans-serif;
 }
+.side-nav.wide.slim {
+    width: 3.75rem !important;
+  }
