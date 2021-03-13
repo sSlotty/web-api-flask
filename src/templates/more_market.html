@@ -30,37 +30,49 @@
           </th>
           <th class="th-sm">1D changed
           </th>
-          <th class="th-sm">volume
+          <th class="th-sm">7D changed
           </th>
-          <th class="th-sm">Salary
+          <th class="th-sm">Volume
+          </th>
+          <th class="th-sm">About Market
           </th>
         </tr>
       </thead>
       <tbody>
-        {% if status %}
-        {% for data in response %}
+        
         <tr>
           <td class="text-center" style="width: 50px;">
-            {{ data.rank }}
+            
           </td>
-         
           <td class="dashboard__table-data" style="width: 50px;">
             <img class="dashboard__currencyIcon"
-              src="{{ data.logo_url }}" width="20"><span>&nbsp;&nbsp;{{data.currency}}</span></td>
+              src="" width="20"><span>&nbsp;&nbsp;</span></td>
       
-          <td>{% print('{:,2f}'.format(data.price)) %}</td>
-          <td>61</td>
-          <td>2011/04/25</td>
-          <td>$320,800</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          
         </tr>
-        {% endfor %}
-        {% endif %}
-
       </tbody>
     </table>
-    Enable / disable
+    <div class="d-flex justify-content-center mb-3" id="sentinel">
+      <div class="spinner-border" role="status"></div>
+    </div>
 
   </div>
 </div>
 
+
+<scrtpt>
+  
+  function lazyLoad(){
+    
+  }
+
+</scrtpt>
+
 {% endblock %}
+
+
