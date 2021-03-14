@@ -1,6 +1,9 @@
-from flask import Flask,Blueprint,render_template,current_app
+from flask import Flask, Blueprint, render_template, current_app, jsonify, make_response,request
+from flask.helpers import make_response
 import requests
 import service.cryptocurrency as crypto
+import time
+
 main = Blueprint('main',__name__,static_folder='static',template_folder='templates')
 
 @main.route('/')
@@ -12,9 +15,9 @@ def index():
 
 @main.route('/more-market')
 def viewAll():
-    res = crypto.getCryptoLimit(10)
-    return render_template('more_market.html',response=res['result'],status=res['status'])
+    return render_template('more_market.html')
     
+
 
 @main.route('/about-market/<string:id>')
 def about_market(id):
@@ -34,3 +37,37 @@ def chart(id):
 @main.route('/news')
 def news():
     return render_template('news.html')
+
+
+@main.route('/load')
+def load():
+
+    posts = list()
+
+    get = crypto.getCrpytoAll()
+    for data in get["result"]:
+        posts.append(data)
+
+    count_post = len(posts)
+    quantity = 20
+    print(count_post)
+    print(quantity)
+
+    time.sleep(0.02)
+    if request.args:
+
+        counter = int(request.args.get("c"))
+
+        if counter == 0:
+            print(f"Returning posts 0 to {quantity}")
+            res = make_response(jsonify(posts[0:quantity]),200)
+
+        elif counter == posts:
+            print("No more posts to load")
+            res = make_response(jsonify({}), 200)
+
+        else:
+            print(f"Returning posts {counter} to {counter + quantity}")
+            res = make_response(jsonify(posts[counter: counter + quantity]),200)
+
+    return res

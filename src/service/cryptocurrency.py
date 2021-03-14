@@ -5,7 +5,7 @@ import json
 
 
 def getCrpytoAll():
-    url = '{}/ticker?key={}&=interval=1d,30d&convert=THB&per-page=10'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'])
+    url = '{}/ticker?key={}&=interval=1d,30d&convert=THB'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'])
     
     req = requests.get(url, stream=True,headers={'User-Agent':'X-Pagination-Total-Items'})
     
@@ -16,9 +16,9 @@ def getCrpytoAll():
         return {"result":"Please try agin","status":False}
 
 def getCryptoLimit(perPage):
-    url = '{}/ticker?key={}&interval=1d,30d&convert=THB&per-page={}'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],perPage)
+    url = '{}/ticker?key={}&interval=1d,30d&convert=THB&per-page={}&page=1'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],perPage)
     response = requests.get(url,headers={'User-Agent':'X-Pagination-Total-Items'})
-    
+    print(url)
     if response.status_code == 200:
         return {"result":response.json(),"status":True}
     else: 
