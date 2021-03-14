@@ -15,43 +15,81 @@
 
 </head>
 
+<style>
+    body{
+    font-family: 'Mitr', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.side-nav.wide.slim {
+    width: 3.75rem !important;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    background: #e2ab86;
+    min-height: 10vh;
+}
+nav{
+    position: absolute;
+    float: right;
+}
+nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    display: inline-flex;
+}
+nav ul li a{
+    position: relative;
+    padding: 16px 0 5px;
+    margin: 0 25px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Mitr', sans-serif;
+    font-size: 16px;
+}
+nav ul li a:hover{
+    color: green;
+    transition: .9s;
+}
+nav ul li a:after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0);
+    -webkit-transform: translateX(-50%) scaleX(0);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    width: 100%;
+    height: 2px;
+    background-color: green;
+    -webkit-transition: transform 250ms;
+    transition: transform 250ms;
+}
+nav ul li a:hover:after{
+    -webkit-transform: translateX(-50%) scaleX(1);
+    transform: translateX(-50%) scaleX(1);
+}
+
+</style>
 <body>
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark secondary-color">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Dropdown
-                    </a>
-                    <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+    <div class="wrapper">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Crypto</a></li>
+                <li><a href="#">Chart</a></li>
+                <li><a href="#">About</a></li>
             </ul>
-            <form class="form-inline">
-                <div class="md-form my-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </div>
-            </form>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <main>
         <div class="constainer mt-5 pl-5 pr-5">
