@@ -10,8 +10,9 @@ main = Blueprint('main',__name__,static_folder='static',template_folder='templat
 @main.route('/index')
 def index():
     res = crypto.getCryptoLimit(5)
-    print(type(res['status']))
-    return render_template('index.html',response=res['result'],status=res['status'])
+    news = crypto.getNews(4)
+
+    return render_template('index.html',response=res['result'],status=res['status'],response_new=news['result'])
 
 @main.route('/more-market')
 def viewAll():
@@ -36,7 +37,8 @@ def chart(id):
 
 @main.route('/news')
 def news():
-    return render_template('news.html')
+    news = crypto.getNews(20)
+    return render_template('news.html',response_new=news['result'])
 
 
 @main.route('/load')

@@ -1,0 +1,44 @@
+{% extends "base_layout.html" %}
+
+{% block body %}
+<div class="container-fulid m-5">
+    <div class="row">
+      {% for news in response_new %}
+      <div class="col-xl-6 col-md-12 col-sm-12">
+        <!-- News jumbotron -->
+        <div class="jumbotron text-center hoverable p-4">
+  
+          <!-- Grid row -->
+          <div class="row">
+  
+            <!-- Grid column -->
+            <div class="col-md-4 offset-md-1 mx-3 my-3">
+  
+              <!-- Featured image -->
+              <div class="view overlay">
+                <img src="{{news['urlToImage']}}" class="img-fluid"
+                  alt="Sample image for first version of blog listing">
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+  
+            </div>
+            <div class="col-md-7 text-md-left ml-3 mt-3">
+  
+              <h4 class="h4 mb-4">{{news['title']}}</h4>
+  
+              <p class="font-weight-normal">{{news['description']}}</p>
+              <p class="font-weight-normal">{{news['author']}}</p>
+  
+              <a href="{{news['url']}}" class="btn btn-success">Read more</a>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+  </div>
+{% endblock %}

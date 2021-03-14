@@ -1,18 +1,107 @@
+
 {% extends "base_layout.html" %}
 
 {% block body %}
 
-    <div class="card text-left">
+  <div class="container mb-5">
+    <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Body</p>
-        <p>Test push form dev</p>
-        <p>Test push form dev-NOT</p>
-        {{status}}
         {% if status %}
-          {{ response[0] }}
-          {% endif %}
+        <div class="table-responsive">
+          <table class="table table-md table-striped table-bordered">
+            <thead class="black white-text">
+              <tr >
+                <th class="th-sm text-center">#
+                </th>
+                <th class="th-sm">Name
+                </th>
+                <th class="th-sm">Price
+                </th>
+                <th class="th-sm">Hight
+                </th>
+                <th class="th-sm">Volume
+                </th>
+                <th class="th-sm">Volume Change
+                </th>
+                <th class="th-sm">Chart
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in response %}
+              <tr>
+                <th scope="row" class="text-center" style="width: 50px;" id="rank">{{data['rank']}}
+                </th>
+                <td class="dashboard__table-data" style="width: 100px;" id="logo">
+                  <img class="dashboard__currencyIcon" src="{{data['logo_url']}}" width="20">
+                  <span>&nbsp;{{data['id']}}&nbsp;</span></td>
+                <td id="price" style="width: 50px;">{{data['price']}}
+                </td>
+                <td id="hight" style="width:100px;">{{data['high']}}
+                </td>
+                <td id="amount" style="width: 50px;">{{data['1d']['volume']}}
+                </td>
+                <td id="lower" style="width: 50px;">{{data['1d']['volume_change']}}
+                </td>
+                <td id="about_market" class="text-center" style="width: 70px;">
+                  <a type="button" href="/chart/{{data['id']}}" class="btn btn-sm btn-rounded waves-effect">About
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+          <div class="text-center">
+            <a href="/more-market" type="button" class="btn btn-dark">View more Currency</a>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
-    
+  </div>
+  <div class="parallax-window" data-parallax="scroll" data-image-src="https://images.unsplash.com/photo-1545082758-807e64487f95?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80"></div>
+  
+  <div class="container-fulid m-5">
+    <div class="row">
+      {% for news in response_new %}
+      <div class="col-xl-6 col-md-12 col-sm-12">
+        <!-- News jumbotron -->
+        <div class="jumbotron text-center hoverable p-4">
+  
+          <!-- Grid row -->
+          <div class="row">
+  
+            <!-- Grid column -->
+            <div class="col-md-4 offset-md-1 mx-3 my-3">
+  
+              <!-- Featured image -->
+              <div class="view overlay">
+                <img src="{{news['urlToImage']}}" class="img-fluid"
+                  alt="Sample image for first version of blog listing">
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+  
+            </div>
+            <div class="col-md-7 text-md-left ml-3 mt-3">
+  
+              <h4 class="h4 mb-4">{{news['title']}}</h4>
+  
+              <p class="font-weight-normal">{{news['description']}}</p>
+              <p class="font-weight-normal">{{news['author']}}</p>
+  
+              <a href="{{news['url']}}" class="btn btn-success">Read more</a>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <a href="/news" class="btn btn-danger">Get more news</a>
+    </div>
+  </div>
 {% endblock %}

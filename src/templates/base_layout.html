@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
     <!-- Script -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
@@ -25,94 +26,116 @@
     </script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.datatables.net/scroller/2.0.3/js/dataTables.scroller.min.js"></script>
+
     <script src="{{ url_for('static',filename='node_modules/MDB-Pro/js/mdb.min.js')}}"></script>
 </head>
 
 <style>
-    body{
-    font-family: 'Mitr', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-.side-nav.wide.slim {
-    width: 3.75rem !important;
-}
-.wrapper{
-    display: flex;
-    flex-direction: column;
-    background: #e2ab86;
-    min-height: 10vh;
-}
-nav{
-    position: absolute;
-    float: right;
-}
-nav ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-nav ul li{
-    display: inline-flex;
-}
-nav ul li a{
-    position: relative;
-    padding: 16px 0 5px;
-    margin: 0 25px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-family: 'Mitr', sans-serif;
-    font-size: 16px;
-}
-nav ul li a:hover{
-    color: green;
-    transition: .9s;
-}
-nav ul li a:after{
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%) scaleX(0);
-    -webkit-transform: translateX(-50%) scaleX(0);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    width: 100%;
-    height: 2px;
-    background-color: green;
-    -webkit-transition: transform 250ms;
-    transition: transform 250ms;
-}
-nav ul li a:hover:after{
-    -webkit-transform: translateX(-50%) scaleX(1);
-    transform: translateX(-50%) scaleX(1);
-}
 
 </style>
+
 <body>
 
-    <div class="wrapper">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Crypto</a></li>
-                <li><a href="#">Chart</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </nav>
+    <div class="parallax-window" data-parallax="scroll"
+        data-image-src="https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80">
     </div>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-white" style="background-color:#1c2331;">
+        <a class="navbar-brand" href="/">Crypto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"> Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/more-market?c=0">Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <main>
-        <div class="constainer mt-5 pl-5 pr-5">
+        <div class="constainer mt-5">
             {% block body %}{% endblock %}
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="page-footer font-small stylish-color-dark pt-4 mt-5">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-4">
+
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About this project</h5>
+                    <p>------------------</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-8">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">API LIST</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+             
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <hr>
 
 
-    
-    
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-github"> </i>
+                </a>
+            </li>
+        </ul>
+        <!-- Social buttons -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+
+
+
 </body>

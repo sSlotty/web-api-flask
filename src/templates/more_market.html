@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="container">
-  <div class="card text-left">
+  <div class="card">
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-md" cellspacing="0" width="100%">
@@ -21,7 +21,7 @@
               </th>
               <th class="th-sm">Volume Change
               </th>
-              <th class="th-sm">About Market
+              <th class="th-sm">Chart
               </th>
             </tr>
           </thead>
@@ -94,8 +94,7 @@
           template_clone.querySelector("#amount").innerHTML = b.format(data[i]['1d']['volume'])
           template_clone.querySelector("#hight").innerHTML = b.format(data[i]['high'])
           template_clone.querySelector("#lower").innerHTML = b.format(data[i]['1d']['volume_change'])
-          template_clone.querySelector("#about_market").innerHTML = `<a type="button" href="/about_market/"` +
-            data[i]['id'] + `" class="btn btn-sm btn-outline-success btn-rounded waves-effect"> About market`  +
+          template_clone.querySelector("#about_market").innerHTML = `<a type="button" href="/chart/`+data[i]['id']+`" class="btn btn-sm btn-rounded waves-effect"> About market`  +
             `</a>`
 
           scroller.appendChild(template_clone)
