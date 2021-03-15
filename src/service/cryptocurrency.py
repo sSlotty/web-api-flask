@@ -52,4 +52,21 @@ def getNews(count=5):
         return {"result":"Please try again","status":False}
 
 
+def getChart(id):
+    print(id)
+    url = 'https://min-api.cryptocompare.com/data/v2/histoday?fsym={}&tsym=THB&limit=1000&api_key=68019fce8e3a5632bfebe1aa321b907acf74c6750d6cbaeed43091aaea17d55e'.format(id)
+    req= requests.get(url)
+    data = req.json()
+    chart = list()
+    num = (len(data['Data']['Data']))
+    for i in range(num):
+        chart.append(data['Data']['Data'][i])
+        
+    if req.status_code == 200:
+        return {"result":chart,"status":True}
+    else:
+        return {"result":"Please try again","status":False}
+    
+    
+
 

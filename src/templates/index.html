@@ -8,8 +8,8 @@
       <div class="card-body">
         {% if status %}
         <div class="table-responsive">
-          <table class="table table-md table-striped table-bordered">
-            <thead class="black white-text">
+          <table class="table table-md table-striped">
+            <thead class=" white-text" style="background-color: #1c2331;">
               <tr >
                 <th class="th-sm text-center">#
                 </th>
@@ -44,7 +44,7 @@
                 <td id="lower" style="width: 50px;">{{data['1d']['volume_change']}}
                 </td>
                 <td id="about_market" class="text-center" style="width: 70px;">
-                  <a type="button" href="/chart/{{data['id']}}" class="btn btn-sm btn-rounded waves-effect">About
+                  <a type="button" href="/chart/{{data['id']}}" class="btn btn-sm btn-rounded waves-effect btn-warning">Chart
                   </a>
                 </td>
               </tr>
@@ -53,14 +53,14 @@
 
           </table>
           <div class="text-center">
-            <a href="/more-market" type="button" class="btn btn-dark">View more Currency</a>
+            <a href="/more-market" type="button" class="btn btn-warning">View more Currency</a>
           </div>
         </div>
         {% endif %}
       </div>
     </div>
   </div>
-  <div class="parallax-window" data-parallax="scroll" data-image-src="https://images.unsplash.com/photo-1545082758-807e64487f95?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80"></div>
+  <div class="parallax-window" data-parallax="scroll" data-image-src="https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"></div>
   
   <div class="container-fulid m-5">
     <div class="row">
@@ -79,6 +79,7 @@
               <div class="view overlay">
                 <img src="{{news['urlToImage']}}" class="img-fluid"
                   alt="Sample image for first version of blog listing">
+
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
@@ -92,7 +93,7 @@
               <p class="font-weight-normal">{{news['description']}}</p>
               <p class="font-weight-normal">{{news['author']}}</p>
   
-              <a href="{{news['url']}}" class="btn btn-success">Read more</a>
+              <a href="{{news['url']}}" class="btn btn-outline-success waves-effect">Read more</a>
   
             </div>
           </div>

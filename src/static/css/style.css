@@ -6,7 +6,12 @@ body{
     padding: 0;
     background-color: #FAFAFA;
 }
-
+.jumbotron{
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
 li a ,.navbar-brand{
     color: white;
 }
