@@ -3,7 +3,6 @@ from flask.helpers import make_response
 import requests
 import service.cryptocurrency as crypto
 import time
-import sqlite3
 
 main = Blueprint('main',__name__,static_folder='static',template_folder='templates')
 
@@ -31,9 +30,9 @@ def about_market(id):
 def about():
     return render_template('about.html')
 
-
-@main.route('/chart/<string:id>')
-def chart(id):
+@main.route('/chart', methods=['GET','post'])
+def chart():
+    
     return render_template('chart.html')
 
 
@@ -41,6 +40,12 @@ def chart(id):
 def news():
     news = crypto.getNews(20)
     return render_template('news.html',response_new=news['result'])
+
+@main.route('/loadChart')
+def loadChart():
+    id = request.args.get('id')
+    req = crypto.getChart(id)
+    return req
 
 
 @main.route('/load')
