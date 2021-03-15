@@ -1,10 +1,29 @@
 {% extends "base_layout.html" %} {% block body %}
 <!-- Material input -->
-<div class="container-fluid">
+<div class="container-fluid p-5">
   <div class="row">
-    <div class="card">
-      <div class="card-body">
-        <div id="chart"></div>
+    <div class="col-md-12 col-sm-12">
+      <h1 class="float-center" id="id_h"></h1>
+
+      <div class="float-right">
+        <form class="form-inline ml-5" action="" method="get">
+        
+          <div class="md-form">
+            <input type="text" name="id" id="id" id="form1" class="form-control">
+            <label for="form1">Input ID</label>
+          </div>
+  
+  
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+    </div>
+    <div class="col-md-12 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div id="chart"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,22 +48,43 @@
       y: [data.open, data.high, data.low, data.close],
     }));
 
+    $("#id_h").text(id)
+
     let options = {
-      series: [
-        {
-          data: [...chartData],
-        },
-      ],
+      series: [{
+        data: [...chartData],
+      }, ],
       chart: {
         type: "candlestick",
         height: 720,
-        width: 1280,
+        width: '100%',
         animations: {
-            enabled: false
+          enabled: false
         }
       },
+      legend: {
+        position: "right",
+        verticalAlign: "top",
+        containerMargin: {
+          left: 35,
+          right: 60
+        }
+      },
+      responsive: [{
+        breakpoint: 1000,
+        options: {
+          plotOptions: {
+            bar: {
+              horizontal: false
+            }
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }],
       title: {
-        text: "candlestick Chart",
+        text: id+" Chart",
         align: "left",
       },
       xaxis: {

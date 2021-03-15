@@ -3,6 +3,10 @@ from flask.helpers import make_response
 import requests
 import service.cryptocurrency as crypto
 import time
+from models import db,Member
+import locale
+
+locale.setlocale( locale.LC_ALL, '' )
 
 main = Blueprint('main',__name__,static_folder='static',template_folder='templates')
 
@@ -11,8 +15,33 @@ main = Blueprint('main',__name__,static_folder='static',template_folder='templat
 def index():
     res = crypto.getCryptoLimit(5)
     news = crypto.getNews(4)
+    newResults = [];
+    for i in range(len(res['result'])):
+        # print(res['result'][i]['1d']['volume_change'].format())
 
-    return render_template('index.html',response=res['result'],status=res['status'],response_new=news['result'])
+        price = "฿ {:,.2f}".format(float(res['result'][i]['price']))
+        d_volume = "{:,.2f}".format(float(res['result'][i]['1d']['volume']))
+        d_volume_change = "{:,.2f}".format(float(res['result'][i]['1d']['volume_change']))
+        high = "฿ {:,.2f}".format(float(res['result'][i]['high']))
+
+        result = {
+            'id':res['result'][i]['id'],
+            'currency':res['result'][i]['currency'],
+            'symbol':res['result'][i]['symbol'],
+            'name':res['result'][i]['name'],
+            'logo_url':res['result'][i]['logo_url'],
+            'rank':res['result'][i]['rank'],
+            'high':high,
+            'price':price,
+            '1d_volume':d_volume,
+            '1d_volume_change':d_volume_change,
+        }
+        newResults.append(result)
+    
+    print(newResults)
+        
+
+    return render_template('index.html',response=newResults,status=res['status'],response_new=news['result'])
 
 @main.route('/more-market')
 def viewAll():
@@ -28,11 +57,24 @@ def about_market(id):
 
 @main.route('/about')
 def about():
-    return render_template('about.html')
+    member = []
+    records = Member.query.all()
+    for data in records:
+        recordsObj = {
+            'std_id': data.std_id,
+            'name': data.name,
+            'role':data.role,
+            'img': data.imagelink,
+            'facebook': data.facelink,
+            'git':data.gitlink,
+            'mail': data.maillink
+        }
+        member.append(recordsObj)
+
+    return render_template('about.html',response=member)
 
 @main.route('/chart', methods=['GET','post'])
 def chart():
-    
     return render_template('chart.html')
 
 

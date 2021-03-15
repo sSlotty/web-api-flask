@@ -10,7 +10,7 @@
         <div class="table-responsive">
           <table class="table table-md table-striped">
             <thead class=" white-text" style="background-color: #1c2331;">
-              <tr >
+              <tr class="text-center">
                 <th class="th-sm text-center">#
                 </th>
                 <th class="th-sm">Name
@@ -39,12 +39,12 @@
                 </td>
                 <td id="hight" style="width:100px;">{{data['high']}}
                 </td>
-                <td id="amount" style="width: 50px;">{{data['1d']['volume']}}
+                <td id="amount" style="width: 50px;">{{data['1d_volume']}}
                 </td>
-                <td id="lower" style="width: 50px;">{{data['1d']['volume_change']}}
+                <td id="lower" style="width: 50px;">{{data['1d_volume_change']}}
                 </td>
-                <td id="about_market" class="text-center" style="width: 70px;">
-                  <a type="button" href="/chart/{{data['id']}}" class="btn btn-sm btn-rounded waves-effect btn-warning">Chart
+                <td id="about_market" class="text-center " style="width: 70px;">
+                  <a type="button" href="/chart?id={{data['id']}}" class="btn btn-sm btn-rounded waves-effect btn-warning">Chart
                   </a>
                 </td>
               </tr>

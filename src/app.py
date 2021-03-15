@@ -3,14 +3,18 @@ from flask import Flask
 from blueprints.main import main
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
-import models
+
+from models import db, Member
 
 app = Flask(__name__)
-app.register_blueprint(main,url_prefix='')
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] = 'app-secret-key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///member.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+app.register_blueprint(main,url_prefix='')
 
 
 @app.before_first_request
