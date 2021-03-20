@@ -23,15 +23,6 @@ def getCryptoLimit(perPage):
         return {"result":response.json(),"status":True}
     else: 
         return {"result":"Please try agin","status":False}
-    
-def getAboutCrypto(id):
-    url = '{}?key={}&ids={}'.format(config.API['API_STOCK'],config.API['API_STOCK_KEY'],id)
-    req = requests.get(url)
-    
-    if req.status_code == 200:
-        return {"result":req.json(),"status":True}
-    else:
-        return {"result":"Please try agin","status":False}
 
 
 def getNews(count=5):
